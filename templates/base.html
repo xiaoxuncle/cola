@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}cola{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.css' %}?v=1" rel="stylesheet">
+    <link href="{% static 'css/cola.css' %}?v=1" rel="stylesheet">
+    <script src="{% static 'js/jquery-1.12.3.js' %}"></script>
+    <style>
+        body {
+            background-color:#CFCF00;
+        }
+        .base-middle {
+        }
+        .base-right {
+
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+{% block body %}
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-left">
+            <a class="navbar-brand" href="/" id="indexBrand">Fuck V2EX</a>
+        </div>
+        <form class="navbar-form navbar-left">
+            <div class="form-group">
+                <input class="form-control" type="text" name="query">
+                <!--<input class="btn btn-default" type="submit" value="搜索">-->
+            </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">首页</a></li>
+            <li><a href="#">
+                {% block username%}
+                    {% if not request.user.is_authenticated %}
+                        匿名用户
+                    {% endif %}
+                {% endblock %}
+                </a></li>
+            <li><a href="#">时间轴</a></li>
+            <li><a href="#">登出</a></li>
+            <li><span class="index-blank"></span></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="base-middle col-md-6 col-md-offset-3">
+            {% block middle %}
+            {% endblock %}
+        </div>
+        <div class="base-right col-md-2 col-md-offset-1">
+            {% block right %}
+            {% endblock %}
+        </div>
+    </div>
+</main>
+{% endblock%}
+</body>
+</html>

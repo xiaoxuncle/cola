@@ -1,0 +1,12 @@
+a {
+    color: #999999;
+}
+
+a:hover{
+    text-decoration:none;
+    color: #202020;
+}
+
+a:focus {
+    text-decoration:none;
+}

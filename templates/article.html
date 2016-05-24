@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block middle %}
+    <div>
+        {{article.title}}
+    </div>
+    <div>
+        {{article.content}}
+    </div>
+    <div>
+        {% for tag in tags %}
+            {{tag}}
+        {% endfor %}
+    </div>
+{% endblock %}

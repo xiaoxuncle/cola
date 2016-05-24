@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}登录Fuck V2EX{% endblock %}
+{%block username%}匿名用户{% endblock %}
+{% block head %}
+<style>
+        .login-form input {
+            width:300px;
+            margin:0 auto;
+        }
+
+
+</style>
+{% endblock %}
+{% block body %}
+<form method="post" action="" class="login-form">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter your nick email address" required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Enter your password" required>
+    </div>
+    <input type="submit" class="form-control btn btn-primary" value="Submit">
+</form>
+{% endblock %}
