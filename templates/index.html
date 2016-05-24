@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Fuck V2EX{% endblock%}
+{% block username %}0pens0urce{% endblock %}
+{% block head %}
+    <style>
+        .cell{
+            width:600px;
+            padding:10px;
+            border-radius: 10px;
+            background-color:#FFFFFF;
+            margin-bottom:15px;
+        }
+        .cell-title{
+            padding:10px 0 5px 0;
+        }
+        .cell-info{
+            padding:5px 0 1px 0;
+        }
+        .cell-title a{
+            color:black;
+        }
+    </style>
+{% endblock %}
+{% block middle %}
+    {% for article in articles %}
+    <div class="cell">
+        <div class="cell-title"><a href="/articles/{{article.id}}">{{article.title}}</a></div>
+        <div class="cell-info">
+            <p><a href="#">程序员</a> | <a href="#">{{article.create_user}}</a> | {{article.create_date}} | 最后回复来自 <a href="#">argsno</a></p>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
+{% block right %}
+{% endblock %}

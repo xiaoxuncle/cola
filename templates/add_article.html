@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head%}
+    <style>
+        form .btn{
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+{% block middle %}
+    <form method="post">
+        {{form}}
+        <input class="form-control btn btn-primary" type="submit" value="submit">
+    </form>
+
+{% endblock %}
