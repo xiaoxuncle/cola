@@ -9,6 +9,7 @@
 {% endblock %}
 {% block middle %}
     <form method="post">
+        {% csrf_token %}
         {{form}}
         <input class="form-control btn btn-primary" type="submit" value="submit">
     </form>

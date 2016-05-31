@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block title %}登录Fuck V2EX{% endblock %}
-{%block username%}匿名用户{% endblock %}
 {% block head %}
 <style>
     .login-form {
@@ -14,12 +13,13 @@
 </style>
 {% endblock %}
 {% block middle %}
-<form method="post" action="" class="login-form">
+<form method="post"  class="login-form">
+    {% csrf_token %}
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Enter your nick email address" required>
+        {{ form.username }}
     </div>
     <div class="form-group">
-        <input type="password" class="form-control" placeholder="Enter your password" required>
+        {{ form.password }}
     </div>
     <div class="form-group">
         <input type="submit" class="form-control btn-primary" value="登录">

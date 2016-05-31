@@ -1,11 +1,12 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, redirect, render
+from django.template import RequestContext
 
 from articles.forms import ArticleForm
 from articles.models import Article
 
-
+@login_required(login_url='/auth/signin')
 def add_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST)
@@ -20,18 +21,17 @@ def add_article(request):
             return index(request)
     else:
         form = ArticleForm()
-    return render_to_response('add_article.html', {'form': form})
+        return render_to_response('add_article.html', {'form': form}, context_instance=RequestContext(request))
 
 
 
 
 def index(request):
     articles = Article.objects.order_by('-create_date')
-    user = request.user
-    return render_to_response('index.html', {'articles': articles})
+    return render_to_response('index.html', {'articles': articles}, context_instance=RequestContext(request))
 
 
 def article(request, article_id):
     article = Article.objects.get(id=article_id)
     tags = Article().get_tags()
-    return render_to_response('article.html', {'article': article, 'tags': tags})
+    return render_to_response('article.html', {'article': article, 'tags': tags}, context_instance=RequestContext(request))
