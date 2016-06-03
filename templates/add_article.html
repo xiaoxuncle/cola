@@ -5,13 +5,34 @@
         form .btn{
             margin-top: 20px;
         }
+        form label {
+            font-size:13px;
+            color:#333333;
+            margin-top:8px;
+            margin-bottom:8px;
+        }
     </style>
 {% endblock %}
 {% block middle %}
     <form method="post">
         {% csrf_token %}
-        {{form}}
-        <input class="form-control btn btn-primary" type="submit" value="submit">
+        <label class="label-title">
+            主题标题
+        </label>
+        {{ form.title }}
+        <label class="label-content">
+            正文
+        </label>
+        {{ form.content }}
+        <label class="label-node">
+            节点
+        </label>
+        {{ form.node }}
+        <label class="label-node">
+            标签
+        </label>
+        {{ form.tags }}
+        <input class="form-control btn btn-primary" type="submit" value="发布">
     </form>
 
 {% endblock %}

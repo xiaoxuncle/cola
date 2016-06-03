@@ -39,6 +39,15 @@ class Tag(models.Model):
         return self.tag
 
 
+class Node(models.Model):
+    node = models.CharField(max_length=20)
+    article = models.ForeignKey(Article)
+
+    class Meta:
+        verbose_name = 'Node'
+        verbose_name_plural = 'Nodes'
+
+
 class ArticleComment(models.Model):
     article = models.ForeignKey(Article)
     comment = models.CharField(max_length=500)

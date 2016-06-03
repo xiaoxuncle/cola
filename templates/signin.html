@@ -18,12 +18,14 @@
     <div class="form-group">
         {{ form.username }}
     </div>
+    <div>
+        {{ form.username.errors }}
+    </div>
     <div class="form-group">
         {{ form.password }}
     </div>
     <div class="form-group">
         <input type="submit" class="form-control btn-primary" value="登录">
     </div>
-
 </form>
 {% endblock %}
