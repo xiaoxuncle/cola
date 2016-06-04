@@ -1,4 +1,4 @@
-from django.contrib import auth
+from django.contrib.auth.models import User
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
 
@@ -33,13 +33,14 @@ def signup(request):
 			email = request.POST.get('email', '')
 			username = request.POST.get('username', '')
 			password = request.POST.get('password1', '')
-			u = auth.models.User(username=username, email=email, 
+			u = User.objects.create_user(username=username, email=email, 
 				password=password)
+			u.save()
 			user = CommonUser(user=u)
 			user.save()
 			return redirect('/auth/signin')
 		else:
-			return render_to_response('signup.html', 
+			return render_to_response('signup.html', {'form':form},
 				context_instance=RequestContext(request))
 	else:
 		form = SignupForm()
