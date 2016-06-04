@@ -12,16 +12,16 @@ def signin(request):
     if request.method == 'POST':
         form = SigninForm(request.POST)
         if form.is_valid():
-            username = request.POST.get('username', '')
-            password = request.POST.get('password')
-            user = auth.authenticate(username=username, password=password)
+            email = request.POST.get('email', '')
+            password = request.POST.get('password', '')
+            user = auth.authenticate(email=email, password=password)
             if user is not None:
                 auth.login(request, user)
                 return redirect('/')
             else:
-                return render(request, 'signin.html', {'form':form})
+                return render_to_response('signin.html',{'form':form}, context_instance=RequestContext(request))
         else:
-            return redirect('/auth/signin')
+            return render_to_response('signin.html',{'form':form}, context_instance=RequestContext(request))
     else:
         form = SigninForm()
         return render_to_response('signin.html',{'form':form}, context_instance=RequestContext(request))
