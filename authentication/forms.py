@@ -6,28 +6,28 @@ from django.contrib import auth
 
 class SigninForm(forms.Form):
     error_messages = {
-        'email_not_exist':'该用户不存在！',
+        'username_not_exist':'该用户不存在！',
         'wrong_password':'密码错误！'
     }
     username = forms.CharField(required=True, max_length=20, strip=True, 
-        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Enter your email'}),
+        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'输入你的用户名'}),
         error_messages={'required':'邮箱不能为空！'})
     password = forms.CharField(required=True, max_length=20, min_length=6, 
-        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Enter your password'}), 
+        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'输入你的密码'}), 
         error_messages={'required':'密码不能为空！'})
 
     def clean_username(self):
         username = self.cleaned_data.get('username', '')
         user = User.objects.filter(username=username)
         if not user:
-            raise forms.ValidationError(self.error_messages['email_not_exist'])
-        return email
+            raise forms.ValidationError(self.error_messages['username_not_exist'])
+        return username
 
     def clean_password(self):
-        email = self.cleaned_data.get('email', '')
+        username = self.cleaned_data.get('username', '')
         password = self.cleaned_data.get('password', '')
-        user = auth.authenticate(user=email, password=password)
-        if user is not None:
+        user = auth.authenticate(username=username, password=password)
+        if user is None:
             raise forms.ValidationError(self.error_messages['wrong_password'])
         return password
 

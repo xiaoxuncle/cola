@@ -3,9 +3,13 @@
 {% block head %}
 <style>
     .login-form {
-        margin-top:100px;
+        /*margin-top:100px;*/
     }
     .login-form input {
+        width:300px;
+        margin:0 auto;
+    }
+    .login-form .input-label {
         width:300px;
         margin:0 auto;
     }
@@ -13,25 +17,55 @@
         width: 300px;
         margin:0 auto;
     }
+    .form-top-title {
+        text-align: center;
+        font-size: 30px;
+        padding: 20px 0px 20px 0px;
+    }
+    .info-form {
+    padding-top: 50px;
+    background-color: #F6F6F6;
+    width: 500px;
+    height: 300px;
+    }
+    .signup-link {
+        margin: 0 auto;
+        width: 300px;
+        text-align: right;
+        margin-bottom: 5px;
+    }
 </style>
 {% endblock %}
 {% block middle %}
+
+<div class="form-top-title">
+    Fuck V2EX
+</div>
+
+<div class="info-form">
+    
 <form method="post"  class="login-form">
     {% csrf_token %}
     <div class="form-group">
-        {{ form.email }}
+        <div class="input-label">用户名</div>
+        {{ form.username }}
     </div>
     <div class="error-message">
-        {{ form.email.errors }}
+        {{ form.username.errors }}
     </div>
     <div class="form-group">
+        <div class="input-label">密码</div>
         {{ form.password }}
     </div>
     <div class="error-message">
         {{ form.password.errors }}
+    </div>
+    <div class="signup-link">
+        <a href="/auth/signup">注册账号</a>
     </div>    
     <div class="form-group">
         <input type="submit" class="form-control btn-primary" value="登录">
     </div>
 </form>
+</div>
 {% endblock %}

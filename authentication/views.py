@@ -12,14 +12,11 @@ def signin(request):
     if request.method == 'POST':
         form = SigninForm(request.POST)
         if form.is_valid():
-            email = request.POST.get('email', '')
+            username = request.POST.get('username', '')
             password = request.POST.get('password', '')
-            user = auth.authenticate(email=email, password=password)
-            if user is not None:
-                auth.login(request, user)
-                return redirect('/')
-            else:
-                return render_to_response('signin.html',{'form':form}, context_instance=RequestContext(request))
+            user = auth.authenticate(username=username, password=password)
+            auth.login(request, user)
+            return redirect('/')
         else:
             return render_to_response('signin.html',{'form':form}, context_instance=RequestContext(request))
     else:
@@ -49,11 +46,8 @@ def signup(request):
 			context_instance=RequestContext(request))
 
 
-
-
-
 def logout(request):
     auth.logout(request)
-    return redirect('/')
+    return redirect('/auth/signin')
 
 
