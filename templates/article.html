@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block head %}
 <style>
     .article-title {
@@ -17,11 +18,16 @@
         border-radius: 5px;
         padding-left: 10px;
     }
+    .user-avatar {
+        width: 35px;
+        height: 35px;
+    }
 </style>
 {% endblock %}
 {% block middle %}
     <div class="article-title">
         {{article.title}}
+        {{ article.create_user.avatar }}
     </div>
     <div class="article-info">
         {{ article.create_user }}&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}

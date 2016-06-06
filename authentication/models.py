@@ -3,7 +3,7 @@ from django.db import models
 
 class CommonUser(models.Model):
     user = models.OneToOneField(User)
-    avatar = models.ImageField(default='avatar/default_avatar.jpg')
+    avatar = models.ImageField(default='avatar/default_avatar.png')
     mysite = models.CharField(max_length=255, null=True)
     career = models.CharField(max_length=255, null=True)
     introduction = models.TextField(max_length=3000, null=True)
