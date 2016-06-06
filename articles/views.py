@@ -5,6 +5,7 @@ from django.template import RequestContext
 
 from articles.forms import ArticleForm
 from articles.models import Article
+from authentication.models import CommonUser
 
 @login_required(login_url='/auth/signin')
 def add_article(request):
@@ -12,7 +13,7 @@ def add_article(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = Article()
-            article.create_user = request.user
+            article.create_user = CommonUser.objects.get(user=request.user)
             article.title = form.cleaned_data.get('title')
             article.content = form.cleaned_data.get('content')
             article.save()
@@ -22,8 +23,6 @@ def add_article(request):
     else:
         form = ArticleForm()
         return render_to_response('add_article.html', {'form': form}, context_instance=RequestContext(request))
-
-
 
 
 def index(request):

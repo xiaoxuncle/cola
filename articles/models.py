@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
+from authentication.models import CommonUser
 
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(max_length=4000)
-    create_user = models.ForeignKey(User)
+    create_user = models.ForeignKey(CommonUser)
     create_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -15,6 +16,7 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
 
     def get_tags(self):
         return Tag.objects.filter(article=self)

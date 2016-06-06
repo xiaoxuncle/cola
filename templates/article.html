@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 {% block head %}
 <style>
-
+    .article-title {
+        background-color: #FFFFFF;
+        height: 50px;
+        border-radius: 5px;
+        text-align: left;
+        padding-left: 10px;
+        line-height: 50px;
+        font-size: 18px;
+    }
+    .article-info {
+        background-color: #FFFFFF;
+        height: 20px;
+        margin-top: 8px;
+        border-radius: 5px;
+        padding-left: 10px;
+    }
 </style>
 {% endblock %}
 {% block middle %}
     <div class="article-title">
         {{article.title}}
+    </div>
+    <div class="article-info">
+        {{ article.create_user }}&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}
     </div>
     <div class="article-content">
         {{article.content}}
