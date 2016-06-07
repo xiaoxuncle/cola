@@ -22,6 +22,18 @@
         width: 35px;
         height: 35px;
     }
+    .article-content {
+        margin-top: 8px;
+        padding: 20px 10px 50px 10px;
+        border-radius: 5px;
+        background-color: #FFFFFF;
+    }
+    .comment .comment-head {
+        margin-top: 20px;
+    }
+    .comment button {
+
+    }
 </style>
 {% endblock %}
 {% block middle %}
@@ -35,9 +47,20 @@
     <div class="article-content">
         {{article.content}}
     </div>
-    <div>
-        {% for tag in tags %}
-            {{tag}}
-        {% endfor %}
+    <div class="comment">
+        <div class="comment-head">添加评论</div>
+        <form method="post" action="/articles/add_comment">
+            <textarea id="comment-content" class="form-control"></textarea><br>
+            <div class="form-group text-right">
+                <button id="reply" class="btn text-right">回复</button>                
+            </div>
+        </form>
     </div>
+    <script type="text/javascript">
+        $(function(){
+            $('#reply').click(function(){
+                alert('hello');
+            })
+        })
+    </script>
 {% endblock %}

@@ -54,7 +54,7 @@ class ArticleComment(models.Model):
     article = models.ForeignKey(Article)
     comment = models.CharField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(CommonUser)
 
     class Meta:
         verbose_name = 'Article Comment'
