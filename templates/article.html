@@ -31,15 +31,11 @@
     .comment .comment-head {
         margin-top: 20px;
     }
-    .comment button {
-
-    }
 </style>
 {% endblock %}
 {% block middle %}
     <div class="article-title">
         {{article.title}}
-        {{ article.create_user.avatar }}
     </div>
     <div class="article-info">
         {{ article.create_user }}&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}
@@ -50,17 +46,22 @@
     <div class="comment">
         <div class="comment-head">添加评论</div>
         <form method="post" action="/articles/add_comment">
+            <input type="text" name="article_id" value="{{ article.id }}" hidden="true" >
             <textarea id="comment-content" class="form-control"></textarea><br>
             <div class="form-group text-right">
-                <button id="reply" class="btn text-right">回复</button>                
+                <input type="submit" value="回复" class="btn primary-btn">                
             </div>
         </form>
     </div>
     <script type="text/javascript">
         $(function(){
-            $('#reply').click(function(){
-                alert('hello');
-            })
+            $('.comment form').submit(function(){
+                if ($('#comment-content').val() == ''){
+                    alert('评论内容不能为空！');
+                    return false;
+                }
+                return true;
+            });
         })
     </script>
 {% endblock %}

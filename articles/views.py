@@ -37,9 +37,11 @@ def article(request, article_id):
 
 
 def add_comment(request):
-    content = request.POST.get('content', '')
-    id = request.POST.get('article_id', '')
-    user = CommonUser.objects.get(user=request.user)
-    article = Article.objects.get(id=id)
-    comment = ArticleComment(comment=content, user=user, article=article)
-    comment.save()
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        id = request.POST.get('article_id')
+        user = CommonUser.objects.get(user=request.user)
+        article = Article.objects.get(id=id)
+        comment = ArticleComment(comment=content, user=user, article=article)
+        comment.save()
+    
