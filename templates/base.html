@@ -42,6 +42,10 @@
     </div>
     <div class="base-right col-md-2 col-md-offset-1">
         {% block right %}
+            <div>
+                {{ request.user }}
+            </div>
+            <div></div>
         {% endblock %}
     </div>
 </div>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block title %} {{ article.title }} {% endblock %}
 {% block head %}
 <style>
     .article-title {
@@ -24,7 +25,7 @@
     }
     .article-content {
         margin-top: 8px;
-        padding: 20px 10px 50px 10px;
+        padding: 20px 10px 20px 10px;
         border-radius: 5px;
         background-color: #FFFFFF;
     }
@@ -34,6 +35,14 @@
     .comment-list {
         margin-top: 15px;
     }
+    .comment-list .comment-info {
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        height: 20px;
+    }
+    .comment-list .comment-content {
+        padding: 5px 10px 5px 10px;
+    }
 </style>
 {% endblock %}
 {% block middle %}
@@ -41,7 +50,7 @@
         {{article.title}}
     </div>
     <div class="article-info">
-        {{ article.create_user }}&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}
+        <a href="#">{{ article.create_user }}</a>&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}
     </div>
     <div class="article-content">
         {{ article.content|safe }}
@@ -52,7 +61,12 @@
         {% for comment in comments %}
         <div>
              <div class="comment-info">
-                <a href="#">{{ comment.user }}</a>{{ comment.date }}
+                <div class="col-md-10">
+                    <a href="#">{{ comment.user }}</a>&nbsp;&nbsp;{{ comment.date }}
+                </div>
+                <div class="col-md-2 text-right">
+                    {{ forloop.counter }}楼
+                </div>
             </div>
             <div class="comment-content">
                 {{ comment.comment|safe }}
@@ -87,3 +101,4 @@
         })
     </script>
 {% endblock %}
+
