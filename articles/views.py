@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, redirect, render
+from django.shortcuts import redirect, render
 from django.template import RequestContext
 
 from articles.forms import ArticleForm
@@ -13,35 +13,36 @@ def add_article(request):
         form = ArticleForm(request.POST)
         if form.is_valid():
             article = Article()
-            article.create_user = CommonUser.objects.get(user=request.user)
+            article.create_user = request.user
             article.title = form.cleaned_data.get('title')
-            article.content = form.cleaned_data.get('content')
+            article.content = form.cleaned_data.get('content').replace('\n', '<br>')
+            node_name = form.cleaned_data.get('node')
+            article.add_node(node_name)
             article.save()
-            tags = form.cleaned_data.get('tags')
-            article.create_tags(tags)
             return index(request)
     else:
         form = ArticleForm()
-        return render_to_response('add_article.html', {'form': form}, context_instance=RequestContext(request))
+        return render(request,'add_article.html', {'form': form})
 
 
 def index(request):
     articles = Article.objects.order_by('-create_date')
-    return render_to_response('index.html', {'articles': articles}, context_instance=RequestContext(request))
+    return render(request, 'index.html', {'articles': articles})
 
 
 def article(request, article_id):
     article = Article.objects.get(id=article_id)
-    tags = Article().get_tags()
-    return render_to_response('article.html', {'article': article, 'tags': tags}, context_instance=RequestContext(request))
+    comments = ArticleComment.objects.filter(article=article)
+    return render(request, 'article.html', {'article': article, 'comments':comments})
 
-
+@login_required(login_url='auth/signin')
 def add_comment(request):
     if request.method == 'POST':
-        content = request.POST.get('content')
+        content = request.POST.get('content').replace('\r', '<br>')
         id = request.POST.get('article_id')
-        user = CommonUser.objects.get(user=request.user)
-        article = Article.objects.get(id=id)
-        comment = ArticleComment(comment=content, user=user, article=article)
+        article = Article.objects.get(id=int(id))
+        comment = ArticleComment(comment=content, user=request.user, article=article)
         comment.save()
-    
+        return redirect('/articles/'+id)
+    else:
+        return HttpResponseBadRequest()

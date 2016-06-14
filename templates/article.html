@@ -31,6 +31,9 @@
     .comment .comment-head {
         margin-top: 20px;
     }
+    .comment-list {
+        margin-top: 15px;
+    }
 </style>
 {% endblock %}
 {% block middle %}
@@ -41,15 +44,34 @@
         {{ article.create_user }}&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}
     </div>
     <div class="article-content">
-        {{article.content}}
+        {{ article.content|safe }}
     </div>
+
+    <div class="comment-list">
+        {% if comments %}
+        {% for comment in comments %}
+        <div>
+             <div class="comment-info">
+                <a href="#">{{ comment.user }}</a>{{ comment.date }}
+            </div>
+            <div class="comment-content">
+                {{ comment.comment|safe }}
+            </div>           
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>还没有人回复</p>
+        {% endif %}
+    </div>
+
     <div class="comment">
         <div class="comment-head">添加评论</div>
         <form method="post" action="/articles/add_comment">
+            {% csrf_token %}
             <input type="text" name="article_id" value="{{ article.id }}" hidden="true" >
-            <textarea id="comment-content" class="form-control"></textarea><br>
+            <textarea id="comment-content" class="form-control" name="content"></textarea><br>
             <div class="form-group text-right">
-                <input type="submit" value="回复" class="btn primary-btn">                
+                <input type="submit" value="回复" class="btn btn-primary">                
             </div>
         </form>
     </div>

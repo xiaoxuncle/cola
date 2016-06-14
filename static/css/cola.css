@@ -1,5 +1,5 @@
 a {
-    color: #999999;
+    color: #4D5256;
 }
 
 a:hover{
@@ -17,5 +17,12 @@ ul {
 ul li {
 	list-style-type: none;
 	color: red;
+}
+.container {
+	margin-top: 80px;
+}
+
+body{
+	background-color: #F6F6F6;
 }
 
