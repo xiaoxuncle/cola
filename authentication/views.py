@@ -51,3 +51,7 @@ def logout(request):
     return redirect('/auth/signin')
 
 
+def user(request, username):
+	user = User.objects.get(username=username)
+	return render(request, 'user.html', {'user':user})
+
