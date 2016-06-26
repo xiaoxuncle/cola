@@ -1,7 +1,9 @@
+body {
+	background-color: white;
+}
 a {
     color: #4D5256;
 }
-
 a:hover{
     text-decoration:none;
     color: #202020;
@@ -21,8 +23,6 @@ ul li {
 .container {
 	margin-top: 80px;
 }
-
-body{
-	background-color: #F6F6F6;
+.cell-title {
+	
 }
-
