@@ -46,3 +46,6 @@ def add_comment(request):
         return redirect('/articles/'+id)
     else:
         return HttpResponseBadRequest()
+
+def buhu(request):
+    pass
