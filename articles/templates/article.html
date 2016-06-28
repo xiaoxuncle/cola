@@ -2,50 +2,9 @@
 {% load staticfiles %}
 {% block title %} {{ article.title }} {% endblock %}
 {% block head %}
-<style>
-    .article-title {
-        background-color: #FFFFFF;
-        height: 50px;
-        border-radius: 5px;
-        text-align: left;
-        padding-left: 10px;
-        line-height: 50px;
-        font-size: 18px;
-    }
-    .article-info {
-        background-color: #FFFFFF;
-        height: 20px;
-        margin-top: 8px;
-        border-radius: 5px;
-        padding-left: 10px;
-    }
-    .user-avatar {
-        width: 35px;
-        height: 35px;
-    }
-    .article-content {
-        margin-top: 8px;
-        padding: 20px 10px 20px 10px;
-        border-radius: 5px;
-        background-color: #FFFFFF;
-    }
-    .comment .comment-head {
-        margin-top: 20px;
-    }
-    .comment-list {
-        margin-top: 15px;
-    }
-    .comment-list .comment-info {
-        border-radius: 5px;
-        background-color: #FFFFFF;
-        height: 20px;
-    }
-    .comment-list .comment-content {
-        padding: 5px 10px 5px 10px;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
 {% endblock %}
-{% block middle %}
+{% block container %}
     <div class="article-title">
         {{article.title}}
     </div>

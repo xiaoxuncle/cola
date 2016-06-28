@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Cola{% endblock%}
 {% block container %}
+<div class="col-md-6 col-min-6 col-md-offset-3 col-min-offset-3 text-center">
     {% for article in articles %}
     <div class="cell">
-        <div class="cell-title text-left col-md-offset-3"><a href="/articles/{{article.id}}">{{article.title}}</a></div>
+        <div class="cell-title text-left"><a href="/articles/{{article.id}}">{{article.title}}</a></div>
         <div class="cell-info">
             <p><a href="#">{{ article.node }}</a> | <a href="#">{{article.create_user}}</a> | {{article.create_date}} | 最后回复来自 <a href="#">argsno</a></p>
         </div>
     </div>
     {% endfor %}
+</div> 
 {% endblock %}
 {% block right %}
 {% endblock %}

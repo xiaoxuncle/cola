@@ -10,10 +10,10 @@ class SigninForm(forms.Form):
         'wrong_password':'密码错误！'
     }
     username = forms.CharField(required=True, max_length=20, strip=True, 
-        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'输入你的用户名'}),
+        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'用户名为英文字母和数字的组合'}),
         error_messages={'required':'邮箱不能为空！'})
     password = forms.CharField(required=True, max_length=20, min_length=6, 
-        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'输入你的密码'}), 
+        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'密码为英文字母和数字组合，长度至少8位'}), 
         error_messages={'required':'密码不能为空！'})
 
     def clean_username(self):

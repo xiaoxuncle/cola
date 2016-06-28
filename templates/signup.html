@@ -1,65 +1,38 @@
 {% extends 'base.html' %}
 {% block title %}注册Fuck V2EX{% endblock%}
-{% block head %}
-<style type="text/css">
-	.signup-form input {
-	    width:300px;
-	    margin:0 auto;
-	}
-    .form-top-title {
-        text-align: center;
-        font-size: 30px;
-        padding: 20px 0px 20px 0px;
-    }
-    .info-form {
-	    padding-top: 50px;
-	    background-color: #F6F6F6;
-	    width: 500px;
-	    height: 400px;
-    } 
-    .signup-form .input-label {
-        width:300px;
-        margin:0 auto;
-    }       			
-</style>
-
-{% endblock %}
-{% block middle %}
-<div class="form-top-title">
-    Fuck V2EX
+{% block container %}
+<div class="col-lg-4 col-lg-offset-4">
+	<div class="info-form">
+		<form method="post" class="signup-form">
+			{% csrf_token %}
+			<div class="form-group">
+				<label>邮箱</label>
+				{{ form.email }}
+			</div>
+			<div>
+				{{ form.email.errors }}
+			</div>
+			<div class="form-group">
+				<label>用户名</label>
+				{{ form.username }}
+			</div>
+			<div>
+				{{ form.username.errors }}
+			</div>
+			<div class="form-group">
+				<label>密码</label>
+				{{ form.password1 }}
+			</div>
+			<div>{{ form.password1.errors }}</div>
+			<div class="form-group">
+				<label>确认密码</label>
+				{{ form.password2 }}
+			</div>
+			<div>{{ form.password2.errors }}</div>	
+		    <div class="form-group">
+		        <input type="submit" class="form-control btn-primary" value="注册">
+		    </div>
+		</form>	
+	</div>	
 </div>
-<div class="info-form">
-	<form method="post" class="signup-form">
-		{% csrf_token %}
-		<div class="form-group">
-			<div class="input-label">邮箱</div>
-			{{ form.email }}
-		</div>
-		<div>
-			{{ form.email.errors }}
-		</div>
-		<div class="form-group">
-			<div class="input-label">用户名</div>
-			{{ form.username }}
-		</div>
-		<div>
-			{{ form.username.errors }}
-		</div>
-		<div class="form-group">
-			<div class="input-label">密码</div>
-			{{ form.password1 }}
-		</div>
-		<div>{{ form.password1.errors }}</div>
-		<div class="form-group">
-			<div class="input-label">再次输入密码</div>
-			{{ form.password2 }}
-		</div>
-		<div>{{ form.password2.errors }}</div>	
-	    <div class="form-group">
-	        <input type="submit" class="form-control btn-primary" value="注册">
-	    </div>
-	</form>	
-</div>
-
-
 {% endblock %}
