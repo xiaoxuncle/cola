@@ -43,9 +43,6 @@ def add_comment(request):
         article = Article.objects.get(id=int(id))
         comment = ArticleComment(comment=content, user=request.user, article=article)
         comment.save()
-        return redirect('/articles/'+id)
+        return redirect('/articles/' + id +'#' + id)
     else:
         return HttpResponseBadRequest()
-
-def buhu(request):
-    pass

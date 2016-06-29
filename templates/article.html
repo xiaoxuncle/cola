@@ -19,7 +19,7 @@
     <div class="comment-list">
         {% if comments %}
         {% for comment in comments %}
-        <div>
+        <div id="{{ comment.id }}">
             <div class="comment-info">
                 <div class="col-md-10 comment-date">
                     <a href="#">{{ comment.user }}</a>&nbsp;&nbsp;{{ comment.date }}
