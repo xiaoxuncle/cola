@@ -2,11 +2,12 @@
 {% load staticfiles %}
 {% block title %} {{ article.title }} {% endblock %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/article.css' %}">
+<link rel="stylesheet"  href="{% static 'css/article.css' %}">
 {% endblock %}
 {% block container %}
+<div class="col-md-8 col-md-offset-2">
     <div class="article-title">
-        {{article.title}}
+        <h3>{{article.title}}</h3>
     </div>
     <div class="article-info">
         <a href="#">{{ article.create_user }}</a>&nbsp;&nbsp;发表于&nbsp;&nbsp;{{ article.create_date }}
@@ -19,8 +20,8 @@
         {% if comments %}
         {% for comment in comments %}
         <div>
-             <div class="comment-info">
-                <div class="col-md-10">
+            <div class="comment-info">
+                <div class="col-md-10 comment-date">
                     <a href="#">{{ comment.user }}</a>&nbsp;&nbsp;{{ comment.date }}
                 </div>
                 <div class="col-md-2 text-right">
@@ -47,17 +48,19 @@
                 <input type="submit" value="回复" class="btn btn-primary">                
             </div>
         </form>
-    </div>
-    <script type="text/javascript">
-        $(function(){
-            $('.comment form').submit(function(){
-                if ($('#comment-content').val() == ''){
-                    alert('评论内容不能为空！');
-                    return false;
-                }
-                return true;
-            });
-        })
-    </script>
+    </div>    
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $('.comment form').submit(function(){
+            if ($('#comment-content').val() == ''){
+                alert('评论内容不能为空！');
+                return false;
+            }
+            return true;
+        });
+    })
+</script>
 {% endblock %}
 

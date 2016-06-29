@@ -1,0 +1,26 @@
+.comment-content {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.comment-date {
+	font-size: 13px;
+	color: #5A5A5A;
+}
+.comment-date a {
+	font-size: 18px;
+}
+.comment-list {
+	margin-top: 30px;
+}
+.comment-list>div {
+	border: solid 1px black;
+	padding: 5px 0 5px 0;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+.comment-info {
+	height: 35px;
+}
+.comment {
+	margin-top: 30px;
+}

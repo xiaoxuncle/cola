@@ -10,10 +10,10 @@ class SigninForm(forms.Form):
         'wrong_password':'密码错误！'
     }
     username = forms.CharField(required=True, max_length=20, strip=True, 
-        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'用户名为英文字母和数字的组合'}),
+        widget=forms.TextInput(attrs={'class':'form-control'}),
         error_messages={'required':'邮箱不能为空！'})
     password = forms.CharField(required=True, max_length=20, min_length=6, 
-        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'密码为英文字母和数字组合，长度至少8位'}), 
+        widget=forms.PasswordInput(attrs={'class':'form-control'}), 
         error_messages={'required':'密码不能为空！'})
 
     def clean_username(self):
@@ -39,16 +39,16 @@ class SignupForm(forms.Form):
         'username_short':'用户名至少3个字符！'
     }
     email = forms.EmailField(required=True, 
-        widget=forms.EmailInput(attrs={'class':'form-control'}),
+        widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder': '您的可用邮箱'}),
         error_messages={'required':'邮箱不能为空！'})
     username = forms.CharField(required=True, 
-        widget=forms.TextInput(attrs={'class':'form-control'}),
+        widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': '用户名为英文字母和数字的组合'}),
         error_messages={'required':'用户名不能为空！'})
     password1 = forms.CharField(required=True, 
-        widget=forms.PasswordInput(attrs={'class':'form-control'}),
+        widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': '密码为英文字母和数字组合，长度至少8位'}),
         error_messages={'required':'密码不能为空！'})
     password2 = forms.CharField(required=True, 
-        widget=forms.PasswordInput(attrs={'class':'form-control'}),
+        widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': '确保两次输入的密码一致'}),
         error_messages={'required':'密码不能为空！'})
     
 

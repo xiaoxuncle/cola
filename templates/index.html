@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Cola{% endblock%}
 {% block container %}
-<div class="col-md-6 col-min-6 col-md-offset-3 col-min-offset-3 text-center">
+<div class="col-md-6 col-md-offset-3 text-center">
     {% for article in articles %}
     <div class="cell">
         <div class="cell-title text-left"><a href="/articles/{{article.id}}">{{article.title}}</a></div>
