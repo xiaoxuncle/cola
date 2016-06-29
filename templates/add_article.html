@@ -1,19 +1,6 @@
 {% extends 'base.html' %}
-
-{% block head%}
-    <style>
-        form .btn{
-            margin-top: 20px;
-        }
-        form label {
-            font-size:13px;
-            color:#333333;
-            margin-top:8px;
-            margin-bottom:8px;
-        }
-    </style>
-{% endblock %}
-{% block middle %}
+{% block container %}
+<div class="col-md-6 col-md-offset-3">
     <form method="post">
         {% csrf_token %}
         <label class="label-title">
@@ -29,6 +16,6 @@
         </label>
         {{ form.node }}
         <input class="form-control btn btn-primary" type="submit" value="发布">
-    </form>
-
+    </form>    
+</div>
 {% endblock %}
